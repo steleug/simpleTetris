@@ -1,14 +1,14 @@
-package tetris;
+package com.gmail.steleug.tetris;
 
 public class Cell {
     private Condition condition;
-    private Color color;
+    private MyColor color;
     
-    public void setColor(Color color) {
+    public void setMyColor(MyColor color) {
         this.color = color;
     }
     
-    public Color getColor() {
+    public MyColor getMyColor() {
         return this.color;
     }
     
@@ -20,13 +20,13 @@ public class Cell {
         return this.condition;
     }
     
-    public Cell(Condition condition, Color color) {
+    public Cell(Condition condition, MyColor color) {
         this.condition = condition;
         this.color = color;
     }
     
     public Cell(){
-        this(Condition.FREE, Color.WHITE);
+        this(Condition.FREE, MyColor.DEFAULT);
     }
     
 }

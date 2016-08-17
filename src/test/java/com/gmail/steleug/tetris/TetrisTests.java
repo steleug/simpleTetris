@@ -1,33 +1,9 @@
-import tetris.FigureO;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
+package com.gmail.steleug.tetris;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tetris.*;
 
-public class FiguresTests {
-    
-    public FiguresTests() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+public class TetrisTests {
 
     @Test
     public void initialFigureOTest() {
@@ -37,7 +13,7 @@ public class FiguresTests {
         assertEquals(Condition.BUSY, figureO.getCell(1, 0).getCondition());
         assertEquals(Condition.BUSY, figureO.getCell(1, 1).getCondition());
     }
-    
+
     @Test
     public void initialPlayingAreaTest() {
         PlayingArea playingArea = new PlayingArea();
@@ -47,7 +23,7 @@ public class FiguresTests {
             }
         }
     }
-    
+
     @Test
     public void addFigureOToPlayingAreaTest() {
         PlayingArea playingArea = new PlayingArea();
@@ -59,7 +35,7 @@ public class FiguresTests {
         assertEquals(Condition.BUSY, playingArea.getCell(centerX, 1).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 1).getCondition());
     }
-    
+
     @Test
     public void moveDownFigureOTest() {
         PlayingArea playingArea = new PlayingArea();
@@ -72,9 +48,9 @@ public class FiguresTests {
         assertEquals(Condition.BUSY, playingArea.getCell(centerX, 1).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 1).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX, 2).getCondition());
-        assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 2).getCondition());        
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 2).getCondition());
     }
-    
+
     @Test
     public void moveLeftFigure0Test() {
         PlayingArea playingArea = new PlayingArea();
@@ -87,9 +63,9 @@ public class FiguresTests {
         assertEquals(Condition.BUSY, playingArea.getCell(centerX, 0).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX, 1).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX - 1, 0).getCondition());
-        assertEquals(Condition.BUSY, playingArea.getCell(centerX - 1, 1).getCondition());        
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX - 1, 1).getCondition());
     }
-    
+
     @Test
     public void moveRightFigureOTest() {
         PlayingArea playingArea = new PlayingArea();
@@ -102,7 +78,22 @@ public class FiguresTests {
         assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 0).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 1).getCondition());
         assertEquals(Condition.BUSY, playingArea.getCell(centerX + 2, 0).getCondition());
-        assertEquals(Condition.BUSY, playingArea.getCell(centerX + 2, 1).getCondition());        
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX + 2, 1).getCondition());
     }
-    
+
+    @Test
+    public void rotateAroundFigureOTest() {
+        PlayingArea playingArea = new PlayingArea();
+        int centerX = playingArea.getWidth() / 2;
+        FigureZ figureZ = new FigureZ(centerX, 0);
+        playingArea.addFigure(figureZ);
+        playingArea.rotateAround(figureZ);
+        assertEquals(Condition.FREE, playingArea.getCell(centerX, 0).getCondition());
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 0).getCondition());
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX, 1).getCondition());
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX + 1, 1).getCondition());
+        assertEquals(Condition.BUSY, playingArea.getCell(centerX, 2).getCondition());
+        assertEquals(Condition.FREE, playingArea.getCell(centerX + 1, 2).getCondition());
+    }
+
 }
